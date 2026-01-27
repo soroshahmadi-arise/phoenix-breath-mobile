@@ -1,0 +1,85 @@
+.container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding-top: var(--safe-area-top);
+}
+
+.scrim {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(110px + var(--safe-area-top));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 56px;
+}
+
+.menuButton {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.2);
+}
+
+.pillContainer {
+    position: relative;
+    display: flex;
+    width: 220px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 100px;
+    padding: 4px;
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.1);
+}
+
+.pillSegment {
+    flex: 1;
+    background: transparent;
+    border: none;
+    z-index: 2;
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.pillSegment.active {
+    color: #4A3B32;
+    /* Brand Brown */
+    font-weight: 600;
+}
+
+.activeBackground {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    height: calc(100% - 8px);
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 100px;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1;
+}

@@ -1,0 +1,46 @@
+.row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.topLine {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.pill {
+    background: rgba(255, 235, 205, 0.9);
+    /* Antique White / Cream */
+    color: #4A3B32;
+    /* Dark Brown Text */
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 6px;
+}
+
+.bottomLine {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.goal {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.date {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.3);
+}
