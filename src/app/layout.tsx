@@ -10,7 +10,8 @@ export const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Phoenix Breath",
   description: "Rise from the ashes with AI-guided breathwork.",
-  manifest: "/manifest.json",
+  // basePath isn't auto-applied to the manifest link, so prefix it ourselves.
+  manifest: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/manifest.json`,
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",

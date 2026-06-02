@@ -114,7 +114,7 @@ export default function Home() {
       {/* Background Video (at top level of dashboard) */}
       {selectedTab === 0 && (
         <VideoBackground
-          videoSrc="/videos/EmberIntroVideo2.mp4"
+          videoSrc={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/videos/EmberIntroVideo2.mp4`}
           isPlaying={isPlaying}
           onPlayStateChange={setIsPlaying}
         />
