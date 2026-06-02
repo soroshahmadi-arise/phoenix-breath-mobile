@@ -1,9 +1,10 @@
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    /* absolute so it's clipped to the phone frame (#app-root) instead of the
+       whole desktop window */
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(4px);
     z-index: 100;
