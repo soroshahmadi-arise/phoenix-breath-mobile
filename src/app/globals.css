@@ -26,15 +26,21 @@
   /* Animation */
   --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-  /* Safe Areas (Forced 80px for simulation) */
-  --safe-area-top: 80px;
-  --safe-area-bottom: 34px;
+  /* Safe Areas
+     Real device values on iPhone (when viewport-fit=cover is set); the fallback
+     after the comma is used on desktop and non-notched devices. */
+  --safe-area-top: env(safe-area-inset-top, 24px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 24px);
+  --safe-area-left: env(safe-area-inset-left, 0px);
+  --safe-area-right: env(safe-area-inset-right, 0px);
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  /* Native feel: no grey flash on tap */
+  -webkit-tap-highlight-color: transparent;
 }
 
 html,
@@ -45,23 +51,48 @@ body {
   color: var(--text-primary);
   height: 100%;
   margin: 0;
+  /* Kill the rubber-band / pull-to-refresh bounce and iOS auto text resizing */
+  overscroll-behavior-y: none;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  /* dvh = toolbar-aware height on iOS Safari; vh kept as fallback */
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
-/* Mobile Container to simulate phone on desktop */
+/* Mobile-first phone frame: the whole app is clamped to phone width and centered,
+   so on desktop it renders as a centered phone-shaped column rather than filling
+   the screen. On a real phone it fills the viewport edge-to-edge. */
 #app-root {
   width: 100%;
   max-width: var(--mobile-max-width);
+  min-height: 100vh;
   min-height: 100dvh;
   background: radial-gradient(circle at top, #1a1a1a 0%, var(--color-void-deep) 100%);
   position: relative;
+  overflow: hidden; /* clip anything (overlays, bottom bars) to the phone frame */
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+}
+
+/* On wider screens, dress the frame up like a physical phone: rounded corners and
+   a little breathing room off the top/bottom. Below this width it fills the screen. */
+@media (min-width: 480px) {
+  body {
+    /* subtle backdrop behind the floating phone frame */
+    background: radial-gradient(circle at 50% 0%, #141414 0%, #000 100%);
+  }
+
+  #app-root {
+    margin-block: 24px;
+    min-height: calc(100dvh - 48px);
+    border-radius: 44px;
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.7);
+  }
 }
 
 a {
